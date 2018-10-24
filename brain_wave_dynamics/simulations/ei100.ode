@@ -1,0 +1,19 @@
+par gL=.05, vT=-55, vR=-65, vEX=0, vK=-85, vIN=-70, Ie=10,Ii=10
+par  gie=1,gii=4, gee=2,gei=3, ga=0
+par sigma=4,tau_se=3,tau_si=4,tau_z=80,tau_i=-7
+par vspike=20,vreset=-100
+fe(v,se,si,z)=ie+gl*(v-vr)*(v-vt)/(vt-vr)-gie*si*(v-vin)-gee*se*(v-vex)-ga*z*(v-vk)
+fi(v,se,si)=ii+gl*(v-vr)*(v-vt)/(vt-vr)-gii*si*(v-vin)-gei*se*(v-vex)
+# 50 E 50 I all to all
+wiener we[0..49],wi[j]
+global 1 ve[0..49]-vspike {ve[j]=-vreset;se=se+.02;z[j]=z[j]+1}
+global 1 vi[0..49]-vspike {vi[j]=-vreset;si=si+.02}
+se'=-se/tau_se
+si'=-si/tau_si
+ve[0..49]'=fe(ve[j],se,si,z[j])+sige*we[j]
+vi[0..49]'=fi(vi[j],se,si)+sigi*wi[j]
+z[0..49]'=-z[j]/tau_z
+@ meth=euler,dt=.02,bound=10000,nout=20,total=100
+init ve[0..49]=-65,ve[j]=-65
+par sige=0,sigi=0
+done

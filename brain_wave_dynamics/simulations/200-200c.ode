@@ -1,0 +1,26 @@
+
+table cee % 51 -25 25 exp(-abs(t)/lee)
+table cei % 51 -25 25 exp(-abs(t)/lei)
+table cie % 51 -25 25 exp(-abs(t)/lie)
+table cii % 51 -25 25 exp(-abs(t)/lii)
+
+special kee=conv(even,200,25,cee,se0)
+special kei=conv(even,200,25,cei,se0)
+special kie=conv(even,200,25,cie,si0)
+special kii=conv(even,200,25,cii,si0)
+
+
+se[0..199]'=-se[j]/taue 
+si[0..199]'=-si[j]/taui
+z[0..199]'=-z[j]/tauz
+global 1 ve[0..199]-pi {ve[j]=-pi;se[j]=se[j]+1;z[j]=z[j]+1}
+global 1 vi[0..199]-pi {vi[j]=-pi;si[j]=si[j]+1}
+
+par i_e=-.05,i_i=-.1,gee=1,gei=1,gie=1,gii=.5,gz=1
+ve[0..199]'=1-cos(ve[j])+(1+cos(ve[j]))*(i_e+gee*kee([j])-gie*kie([j])-gz*z[j])
+vi[0..199]'=1-cos(vi[j])+(1+cos(vi[j]))*(i_i+gei*kei([j])-gii*kii([j]))
+par lee=10,lei=5,lie=5,lii=5
+par taue=3,taui=7,tauz=80
+@ meth=euler,total=50
+done
+

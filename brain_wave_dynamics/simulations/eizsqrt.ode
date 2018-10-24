@@ -1,0 +1,20 @@
+f(g)=sqrt(gl)*sqrt((2*g-gl)/(1-exp(-beta*(2*g-gl))))/(2*pi)
+
+
+!v_ad=((vt+vr)/2-ek)
+!v_esyn=((vt+vr)/2-esyn)
+!v_isyn=((vt+vr)/2-isyn)
+!vinv=2/(vt-vr)
+par gad=0,gee=.3,gei=1,gie=.4,gii=.2
+par ebias=0,ibias=0,beta=50
+par taue=3,taui=4,tauz=50
+par gl=.1,ek=-85,esyn=0,isyn=-75
+par vr=-65,vt=-50
+
+
+gex=(ebias-gad*z*v_ad-gee*se*v_esyn-gei*si*v_isyn)/vinv
+gin=(ibias-gie*se*v_esyn-gii*si*v_isyn)/vinv
+se'=-se/taue+f(gex)
+si'=-si/taui+f(gin)
+z'=-z/tauz+f(gex)
+done

@@ -1,0 +1,23 @@
+par vel=1
+par gL=.05, vT=-55, vR=-65, vEX=0, vK=-85, vIN=-70, Ie=-.05,Ii=-1
+par  gie=2,gii=.5, gee=1.2,gei=3 
+par sigma=4,tau_se=3,tau_si=4,tau_z=80,tau_i=-7
+!a=gL/(vT-vR)
+b(g)=-(a*(vt+vr)+g)
+c(ge,gi,i)=a*vr*vt+ge*vex+gi*vin+i
+beta(ge,gi,I)=c(ge,gi,i)/a-b(ge+gi)^2/(4*a^2)
+f(x)=(a/pi)*sqrt(x/(1-exp(-x/sigma)))
+fe=f(beta(gee*we,gie*si,ie))
+fi=f(beta(gei*we,gii*si,ii))
+se'=(-se+fe)/(tau_se*vel)
+si'=(-si+fi)/(tau_si*vel)
+we'=ue
+ue'=we-se
+init se=.00774,si=.009598,we=.00774,ue=0
+@ xp=se,yp=si,xlo=-.01,xhi=.02
+@ ylo=-.01,yhi=.05
+@ nmesh=80,total=100,nout=4
+init 
+aux fre=fe
+aux fri=fi
+done

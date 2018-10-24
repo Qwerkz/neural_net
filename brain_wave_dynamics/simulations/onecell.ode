@@ -1,0 +1,21 @@
+par gL=.05, vT=-55, vR=-65, Ie=0
+par tau_se=3,sige=.5
+!a=1/(vt-vr)
+!b=(vt+vr)/2
+wiener we
+fe(v,ie)=-gl*cos(v)+(1+cos(v))*(ie)*a
+ve'=fe(ve,ie+sige*we)
+se'=-se/tau_se
+count'=0
+seint'=se
+
+global 1 ve-pi {ve=-pi;se=se+1;count=count+1}
+aux sebar=seint/max(t,1)
+aux cur=ie
+aux fr=count/max(t,1)
+aux zz=count/max(t,1)*tau_se
+@ bound=1000000
+@ meth=euler,dt=.05,nout=50
+@ total=50000,trans=49000
+done
+ 

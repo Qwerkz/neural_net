@@ -1,0 +1,12 @@
+f(u)=1/(1+exp(-u))
+table we % 41 -20 20 exp(-abs(t/2))/4
+table wi % 41 -20 20 exp(-abs(t))/2
+special ke=conv(even,101,20,we,u0)
+special ki=conv(even,101,20,wi,v0)
+u[0..100]'=(-u[j]+f(aee*ke([j])-aie*ki([j])-aze*z[j]-te))/taue
+v[0..100]'=(-v[j]+f(aei*ke([j])-aii*ki([j])-ti))/taui
+z[0..100]'=(-z[j]+f(aez*u[j]-tz))/tauz
+par aze=12,te=3.8,aee=15,aie=14,taue=2
+par taui=5,aei=25,aii=8,ti=8.5
+par tauz=100,aez=10,tz=7
+dobe

@@ -1,0 +1,26 @@
+par gL=.05, vT=-55, vR=-65, vEX=0, vK=-85, vIN=-70, Ie=3,Ii=0
+par  gie=2,gii=4, gee=4,gei=3, ga=0.2
+par tau_se=3,tau_si=4,tau_z=100
+!a=1/(vt-vr)
+!b=(vt+vr)/2
+!vexx=vex-b
+!vinx=vin-b
+!vkx=vk-b
+fe(v,se,si,z,ie)=-gl*cos(v)+(1+cos(v))*(ie+gie*si*vinx+gee*se*vexx+ga*z*vkx)*a-sin(v)*(gee*se+ga*z+gie*si)
+fi(v,se,si,ii)=-gl*cos(v)+(1+cos(v))*(ii+gii*si*vinx+gei*se*vexx)*a-sin(v)*(gei*se+gii*si)
+# 50 E 50 I all to all
+wiener we[0..49],wi[j]
+global 1 ve[0..49]-pi {ve[j]=-pi;se=se+.02;z[j]=z[j]+1}
+global 1 vi[0..49]-pi {vi[j]=-pi;si=si+.02}
+se'=-se/tau_se
+si'=-si/tau_si
+ve[0..49]'=fe(ve[j],se,si,z[j],ie+sige*we[j])
+vi[0..49]'=fi(vi[j],se,si,ii+sigi*wi[j])
+z[0..49]'=-z[j]/tau_z
+@ meth=euler,dt=.05,bound=10000,nout=1,total=1000,nout=5
+init ve[0..49]=-1.57,vi[j]=-1.57
+aux vve[0..49]=exp(-beta*(1+cos(ve[j])))
+aux vvi[0..49]=exp(-beta*(1+cos(vi[j])))
+par beta=50
+par sige=.5,sigi=.5
+done

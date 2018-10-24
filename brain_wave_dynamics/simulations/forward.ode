@@ -1,0 +1,76 @@
+par gee=5,gi=10,gei=5,eps=.05
+f(v)=gl*(v-vr)*(v-vt)/(vt-vr)
+s[1..10]_t=sum(0,9)of(shift(s[j]_0,i'))
+s1_[0..9]'=-s1_[j]/taue
+#
+init s1_[0..9]=1
+v2_[0..9]'=f(v2_[j])+gee*(1+eps*[j])*s1_t-gi*si2
+s2_[0..9]'=-s2_[j]/taue
+vi2'=f(vi2)+gei*(s1_t+s2_t)
+si2'=-si2/taui
+global 1 vi2-vsp {si2=si2+1;vi2=vreset}
+global 1 v2_[0..9]-vsp {s2_[j]=s2_[j]+1;v2_[j]=vreset}
+#
+v3_[0..9]'=f(v3_[j])+gee*(1+eps*[j])*s2_t-gi*si3
+s3_[0..9]'=-s3_[j]/taue
+vi3'=f(vi3)+gei*(s2_t+s3_t)
+si3'=-si3/taui
+global 1 vi3-vsp {si3=si3+1;vi3=vreset}
+global 1 v3_[0..9]-vsp {s3_[j]=s3_[j]+1;v3_[j]=vreset}
+#
+v4_[0..9]'=f(v4_[j])+gee*(1+eps*[j])*s3_t-gi*si4
+s4_[0..9]'=-s4_[j]/taue
+vi4'=f(vi4)+gei*(s3_t+s4_t)
+si4'=-si4/taui
+global 1 vi4-vsp {si4=si4+1;vi4=vreset}
+global 1 v4_[0..9]-vsp {s4_[j]=s4_[j]+1;v4_[j]=vreset}
+#
+v5_[0..9]'=f(v5_[j])+gee*(1+eps*[j])*s4_t-gi*si5
+s5_[0..9]'=-s5_[j]/taue
+vi5'=f(vi5)+gei*(s4_t+s5_t)
+si5'=-si5/taui
+global 1 vi5-vsp {si5=si5+1;vi5=vreset}
+global 1 v5_[0..9]-vsp {s5_[j]=s5_[j]+1;v5_[j]=vreset}
+#
+v6_[0..9]'=f(v6_[j])+gee*(1+eps*[j])*s5_t-gi*si6
+s6_[0..9]'=-s6_[j]/taue
+vi6'=f(vi6)+gei*(s5_t+s6_t)
+si6'=-si6/taui
+global 1 vi6-vsp {si6=si6+1;vi6=vreset}
+global 1 v6_[0..9]-vsp {s6_[j]=s6_[j]+1;v6_[j]=vreset}
+#
+v7_[0..9]'=f(v7_[j])+gee*(1+eps*[j])*s6_t-gi*si7
+s7_[0..9]'=-s7_[j]/taue
+vi7'=f(vi7)+gei*(s6_t+s7_t)
+si7'=-si7/taui
+global 1 vi7-vsp {si7=si7+1;vi7=vreset}
+global 1 v7_[0..9]-vsp {s7_[j]=s7_[j]+1;v7_[j]=vreset}
+#
+v8_[0..9]'=f(v8_[j])+gee*(1+eps*[j])*s7_t-gi*si8
+s8_[0..9]'=-s8_[j]/taue
+vi8'=f(vi8)+gei*(s7_t+s8_t)
+si8'=-si8/taui
+global 1 vi8-vsp {si8=si8+1;vi8=vreset}
+global 1 v8_[0..9]-vsp {s8_[j]=s8_[j]+1;v8_[j]=vreset}
+#
+v9_[0..9]'=f(v9_[j])+gee*(1+eps*[j])*s8_t-gi*si9
+s9_[0..9]'=-s9_[j]/taue
+vi9'=f(vi9)+gei*(s8_t+s9_t)
+si9'=-si9/taui
+global 1 vi9-vsp {si9=si9+1;vi9=vreset}
+global 1 v9_[0..9]-vsp {s9_[j]=s9_[j]+1;v9_[j]=vreset}
+#
+v10_[0..9]'=f(v10_[j])+gee*(1+eps*[j])*s9_t-gi*si10
+s10_[0..9]'=-s10_[j]/taue
+vi10'=f(vi10)+gei*(s9_t+s10_t)
+si10'=-si10/taui
+global 1 vi10-vsp {si10=si10+1;vi10=vreset}
+global 1 v10_[0..9]-vsp {s10_[j]=s10_[j]+1;v10_[j]=vreset}
+#
+aux s[1..10]all=s[j]_t
+init v[2..10]_0=-65
+init vi[2..10]=-65,v[j]_1=-65,v[j]_2=-65,v[j]_3=-65,v[j]_4=-65,v[j]_5=-65,v[j]_6=-65,v[j]_7=-65,v[j]_8=-65,v[j]_9=-65
+par vr=-65,vt=-50,vreset=-70,gl=.1,taui=5,taue=2,vsp=20
+@ total=100
+vi1'=-vi1
+done

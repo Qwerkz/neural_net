@@ -1,0 +1,10 @@
+u1'=-u1/tau
+u[2..80]'=-u[j]/tau+f(a*u[j-1]-b*v[j])
+v[2..80]'=-v[j]/taui+f(d*u[j-1]+e*u[j])
+init u1=1
+par tau=2,taui=5
+par c=1.5,h=1.5,a=5,b=0,d=5,e=0
+@ total=100
+f(x)=1/(1+exp(-k*(x-l)))
+par k=8,l=4
+done

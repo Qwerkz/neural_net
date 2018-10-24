@@ -1,0 +1,17 @@
+par gL=.05, vT=-55, vR=-65, vEX=0, vK=-85, vIN=-70, I=10
+par  gi=0, ge=2, ga=.5 
+g_ex=ge*s 
+g_ahp=ga*z
+g_in=0
+par sigma=4,tau_s=3,tau_z=80
+a=gL/(vT-vR)
+b=-a*vT-a*vR-g_ex-g_in-g_ahp
+c=a*vR*vT+g_ex*vEX+g_in*vIN+g_ahp*vK+I
+beta=c/a-b/(4*a^2)
+f=(a/pi)*(sqrt(beta/(1-exp(-beta/sigma))))
+s'=-s/tau_s+f
+z'=-z/tau_z+f
+@ xp=s,yp=z,xlo=-.25,xhi=5
+@ ylo=-.5,yhi=5
+@ nmesh=80,total=100,nout=4
+done

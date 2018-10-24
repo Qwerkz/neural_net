@@ -1,0 +1,37 @@
+table cxee cxee2.tab
+table wgee wxee2.tab
+table cxie cxie2.tab
+table wgie wxie2.tab
+table cxei cxei2.tab
+table wgei wxei2.tab
+table cxii cxii2.tab
+table wgii wxii2.tab
+
+
+special see=sparse(400,40,wgee,cxee,s0)
+special sei=sparse(400,9,wgei,cxei,si0)
+special sie=sparse(80,51,wgie,cxie,s0)
+special sii=sparse(80,9,wgii,cxii,si0)
+v[0..399]'=gl*(v[j]-vr)*(v[j]-vt)/(vt-vr)+ibias-gad*z[j]*(v[j]-ek)\
+-gee*see([j])*(v[j]-esyn)-gei*sei([j])*(v[j]-isyn)+sige*normal(0,1)
+z[0..399]'=-z[j]/tauz
+vi[0..79]'=gl*(vi[j]-vr)*(vi[j]-vt)/(vt-vr)-gie*sie([j])*(vi[j]-esyn)-gii*sii([j])*(vi[j]-isyn) + sigi*normal(0,1)
+s[0..399]'=-s[j]/taue
+
+si[0..79]'=-si[j]/taui
+
+global 1 v[0..399]-vspike {v[j]=vreset;s[j]=s[j]+1;z[j]=z[j]+1}
+global 1 vi[0..79]-vspike {vi[j]=vreseti;si[j]=si[j]+1}
+par ibias=0,gee=.1,gad=.1,taue=3,tauz=50
+par gie=.1,gei=.15,gii=.02
+par taui=4
+init s[0..5]=1
+par ek=-85,esyn=0,isyn=-75
+par vr=-65,gl=.1,vt=-50,vreset=-70,vreseti=-60
+par vspike=20
+par sige=0,sigi=0
+@ total=100,meth=euler
+init v[0..399]=-65
+init vi[0..79]=-65
+
+done

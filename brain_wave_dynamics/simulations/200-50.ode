@@ -1,0 +1,23 @@
+
+table cee % 40000 0 39999  exp(-abs(mod(t,200)/200-flr(t/200)/200)/lee)
+table cie % 10000 0 9999   exp(-abs(mod(t,50)/50-flr(t/200)/200)/lie)
+table cei % 10000 0 9999   exp(-abs(mod(t,200)/200-flr(t/50)/50)/lei)
+table cii % 2500 0 2499    exp(-abs(mod(t,50)/50-flr(t/50)/50)/lii)
+special kee=mmult(200,200,cee,se0)
+special kei=mmult(50,200,cei,se0)
+special kie=mmult(200,50,cie,si0)
+special kii=mmult(50,50,cii,si0)
+se[0..199]'=-se[j]/taue 
+si[0..49]'=-si[j]/taui
+z[0..199]'=-z[j]/tauz
+global 1 ve[0..199]-pi {ve[j]=-pi;se[j]=se[j]+1;z[j]=z[j]+1}
+global 1 vi[0..49]-pi {vi[j]=-pi;si[j]=si[j]+1}
+
+par i_e=-.05,i_i=-.1,gee=1,gei=1,gie=1,gii=.5,gz=1
+ve[0..199]'=1-cos(ve[j])+(1+cos(ve[j]))*(i_e+gee*kee([j])-gie*kie([j])-gz*z[j])
+vi[0..49]'=1-cos(vi[j])+(1+cos(vi[j]))*(i_i+gei*kei([j])-gii*kii([j]))
+par lee=.1,lei=.05,lie=.05,lii=.05
+par taue=3,taui=7,tauz=80
+@ meth=euler,total=200,nout=5
+done
+

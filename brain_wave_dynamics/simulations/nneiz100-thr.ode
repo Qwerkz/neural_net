@@ -1,0 +1,41 @@
+par gL=.05, vT=-55, vR=-65, vEX=0, vK=-85, vIN=-70, Ie=0,Ii=0
+par  gie=1.2,gii=.1, gee=1.1,gei=.5, ga=0.15
+par le=.1,li=0 
+se0=se1
+si0=si1
+se101=se100
+si101=si100
+par tstart=40.0001
+par thr=.05
+aux g_ie=gie
+global 1 t-tstart {se1=.1}
+global 1 se40-thr {t40=t}
+global 1 se60-thr {t60=t;vel=20/max(.01,t60-t40)}
+sehat[1..100]=(1-2*le)*se[j]+le*(se[j-1]+se[j+1])
+sihat[1..100]=(1-2*li)*si[j]+li*(si[j-1]+si[j+1]) 
+ge_ex[1..100]=gee*sehat[j]
+ge_in[1..100]=gie*sihat[j]
+gi_ex[1..100]=gei*sehat[j]
+gi_in[1..100]=gii*sihat[j]
+g_ahp[1..100]=ga*z[j]
+par sigma=4,tau_se=3,tau_si=4,tau_z=80
+a=gL/(vT-vR)
+be[1..100]=-a*vT-a*vR-ge_ex[j]-ge_in[j]-g_ahp[j]
+bi[1..100]=-a*vT-a*vR-gi_ex[j]-gi_in[j]
+ce[1..100]=a*vR*vT+ge_ex[j]*vEX+ge_in[j]*vIN+g_ahp[j]*vK+Ie
+ci[1..100]=a*vR*vT+gi_ex[j]*vEX+gi_in[j]*vIN+Ii
+betae[1..100]=ce[j]/a-be[j]^2/(4*a^2)
+betai[1..100]=ci[j]/a-bi[j]^2/(4*a^2)
+fe[1..100]=(a/pi)*(sqrt(betae[j]/(1-exp(-betae[j]/sigma))))
+fi[1..100]=(a/pi)*(sqrt(betai[j]/(1-exp(-betai[j]/sigma))))
+se[1..100]'=-se[j]/tau_se+fe[j]
+si[1..100]'=-si[j]/tau_si+fi[j]
+z[1..100]'=-z[j]/tau_z+fe[j]
+t40'=0
+vel'=0
+t60'=0
+init se[1..100]=.00046,si[j]=.0018,z[j]=.01228
+@ total=200,nout=4,bound=100000
+@ xhi=100,ylo=0,yhi=.15
+@ yp=se40
+done

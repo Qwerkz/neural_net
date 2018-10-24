@@ -1,0 +1,79 @@
+table cxee cxee2.tab
+table wgee wxee2.tab
+table cxie cxie2.tab
+table wgie wxie2.tab
+table cxei cxei2.tab
+table wgei wxei2.tab
+table cxii cxii2.tab
+table wgii wxii2.tab
+
+
+special see=sparse(400,40,wgee,cxee,s0)
+special sei=sparse(400,9,wgei,cxei,si0)
+special sie=sparse(80,51,wgie,cxie,s0)
+special sii=sparse(80,9,wgii,cxii,si0)
+# rescale the synaptic drive
+!v_ad=((vt+vr)/2-ek)
+!v_esyn=((vt+vr)/2-esyn)
+!v_isyn=((vt+vr)/2-isyn)
+!vinv=2/(vt-vr)
+
+q[0..399]'=-gl*cos(q[j])+vinv*(1+cos(q[j]))*(ibias-gad*z[j]*v_ad \
+-gee*see([j])*v_esyn-gei*sei([j])*v_isyn+sige*normal(0,1) + st(t-t1,[j]-x1)+st(t-t2,[j]-x2))
+
+qi[0..79]'=-gl*cos(qi[j])+vinv*(1+cos(qi[j]))*(-gie*sie([j])*v_esyn-gii*sii([j])*v_isyn + sigi*normal(0,1))
+
+
+
+z[0..399]'=-z[j]/tauz
+
+s[0..399]'=-s[j]/taue
+
+si[0..79]'=-si[j]/taui
+st(x,t)=amp*heav(t)*heav(dur-t)*heav(x)*heav(wid-x)
+par dur=5,wid=10,amp=0
+par t1=25,t2=100
+par x1=0,x2=40
+
+# resets for the theta model
+global 1 q[0..399]-pi {q[j]=-pi;s[j]=s[j]+1;z[j]=z[j]+1}
+global 1 qi[0..79]-pi {qi[j]=-pi;si[j]=si[j]+1}
+par ibias=0,gee=.15,gad=.3,taue=3,tauz=50
+par gie=.3,gei=1,gii=.1
+par taui=4
+
+par ek=-85,esyn=0,isyn=-75
+par vr=-65,gl=.1,vt=-50
+
+par sige=1,sigi=0.5
+@ total=200,meth=euler,nout=2
+init q[0..399]=-1.57
+init qi[0..79]=-1.57
+
+done
+
+change of variables
+(vt+vr)/2 + (vt-vr)/2 tan(q/2) = v
+Cm=1
+Vs = (vt+vr)/2-Es  is effective potential
+
+(vt+vr)/2 - vr = (vt-vr)/2
+(vt+vr)/2 - vt = -(vt-vr)/2
+V' = [(vt-vr)/2 * sec^2(q/2)/2]q' = I - gs Vs + gl (v-vr)(v-vt)/(vt-vr)
+   
+
+  gl [(vt-vr)/2 tan(q/2) + (vt-vr)/2][(vt-vr)/2  tan(q/2) - (vt-vr)/2]
+  = gl (vt-vr)^2/4 [tan^2(q/2)-1]
+divide by (vt-vr)
+  = gl(vt-vr)/4 [tan^2 (q/2)-1]
+ 
+so  (vt -vr)/(4 cos^2 q/2) q' = gl (vt-vr)/4 [tan^2 (q/2)-1] + I - gs Vs
+thus
+
+q' = gl [sin^2 q/2-cos^2q/2] + 2/(vt-vr)[I-gs Vs] 2 cos^2 q/2
+q' = -gl cos(q) + (1+cos q) [2/(vt-vr)] [I-gs Vs]
+
+  
+
+
+

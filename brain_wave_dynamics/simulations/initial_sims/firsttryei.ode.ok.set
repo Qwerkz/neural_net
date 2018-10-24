@@ -1,0 +1,226 @@
+## Set file for /Users/lisamathis/Dropbox/waves-and-such/LisaHarenski/firsttryei.ode.txt on Tue Nov 27 14:32:10 2012
+3   Number of equations and auxiliaries
+17   Number of parameters
+# Numerical stuff
+4    nout
+80    nullcline mesh
+3   Runge-Kutta
+500  total
+0.05  DeltaT
+0  T0
+0  Transient
+100  Bound
+1e-12  DtMin
+1  DtMax
+0.001  Tolerance
+0.001  Abs. Tolerance
+0  Max Delay
+100   Eigenvector iterates
+0.001  Eigenvector tolerance
+0.001  Newton tolerance
+0  Poincare plane
+1e-05  Boundary value tolerance
+1e-05  Boundary value epsilon
+20   Boundary value iterates
+0   Poincare None
+1   Poincare variable
+1   Poincare sign
+0   Stop on Section
+0   Delay flag
+500.0000000000794  Current time
+500.0000000000794  Last Time
+1   MyStart
+1   INFLAG
+# Delays
+0.0
+0.0
+0.0
+# Bndry conds
+0
+0
+0
+# Old ICs
+0.005  SE
+0.001911251319808577  SI
+0.01500686528815281  Z
+# Ending  ICs
+0.0003994588467964951  SE
+0.001733908554556898  SI
+0.01065223629384206  Z
+# Parameters
+0.05  gL
+-55  vT
+-65  vR
+0  vEX
+-85  vK
+-70  vIN
+0  Ie
+0  Ii
+1.5  gie
+0.1  gii
+1.5  gee
+0.5  gei
+0.2  ga
+4  sigma
+3  tau_se
+4  tau_si
+80  tau_z
+# Graphics
+0.7071097251469876  rm
+-0.4999999999826661  rm
+0.4999958366025516  rm
+0.7071038372138505  rm
+0.5000041633974482  rm
+-0.4999999999826661  rm
+0  rm
+0.7071038372138505  rm
+0.7071097251469876  rm
+0    
+2    
+1    
+1    
+0    
+0    
+3    
+1    
+1    
+0    
+0    
+3    
+1    
+1    
+0    
+0    
+3    
+1    
+1    
+0    
+0    
+3    
+1    
+1    
+0    
+0    
+3    
+1    
+1    
+0    
+0    
+3    
+1    
+1    
+0    
+0    
+3    
+1    
+1    
+0    
+0    
+3    
+1    
+1    
+0    
+0    
+3    
+1    
+1    
+0    
+-1000   
+1000   
+0    
+0   3DFlag
+1   Timeflag
+0   Colorflag
+0   Type
+1  color scale
+0   minscale
+500   xmax
+0   xmin
+0.09459166973829269   ymax
+0.001360357506200671   ymin
+12   zmax
+-12   zmin
+250   
+0.004   
+0.04797601362224668   
+21.45202027212872   
+0   
+0.08333333333333333   
+45   Theta
+45   Phi
+0    xshft
+0    yshft
+0    zshft
+0   xlo
+0.001360357506200671   ylo
+-0.25   
+-0.5   
+500   xhi
+0.09459166973829269   yhi
+5   
+5   
+# Transpose variables etc
+SE
+2   n columns
+1   n rows
+1   row skip
+1   col skip
+1   row 0
+# Coupling stuff for H funs
+0
+0
+0
+# Array plot stuff
+
+1   NCols
+0   Row 1
+50   NRows
+8   RowSkip
+0  Zmin
+1  Zmax
+# Torus information 
+0    Torus flag 1=ON
+6.283185307179586  Torus period
+# Range information
+gL
+-1   eq-range stab col
+0   shoot flag 1=on
+10   eq-range steps
+0  eq_range low
+1  eq_range high
+SE
+SE
+20   Range steps
+0   Cycle color 1=on
+1   Reset data 1=on
+1   Use old I.C.s 1=yes
+0  Par1 low
+0  Par2 low
+1  Par1 high
+1  Par2 high
+gL
+0   BVP side
+0   color cycle flag 1=on
+10   BVP range steps
+0  BVP range low
+1  BVP range high
+RHS etc ...
+dSE/dT=-SE/TAU_SE+FE
+dSI/dT=-SI/TAU_SI+FI
+dZ/dT=-Z/TAU_Z+FE
+
+where ...
+GE_EX = GEE*SE    
+GE_IN = GIE*SI   
+GI_EX = GEI*SE   
+GI_IN = GII*SI   
+G_AHP = GA*Z   
+A = GL/(VT-VR)   
+BE = -A*VT-A*VR-GE_EX-GE_IN-G_AHP   
+BI = -A*VT-A*VR-GI_EX-GI_IN   
+CE = A*VR*VT+GE_EX*VEX+GE_IN*VIN+G_AHP*VK+IE   
+CI = A*VR*VT+GI_EX*VEX+GI_IN*VIN+II   
+BETAE = CE/A-BE^2/(4*A^2)   
+BETAI = CI/A-BI^2/(4*A^2)   
+FE = (A/PI)*(SQRT(BETAE/(1-EXP(-BETAE/SIGMA))))   
+FI = (A/PI)*(SQRT(BETAI/(1-EXP(-BETAI/SIGMA))))   

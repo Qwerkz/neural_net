@@ -1,0 +1,17 @@
+u'=(-u+f(aee*we-aie*wi-aze*z-te))/(c*taue)
+v'=(-v+f(aei*we-aii*wi-ti))/(c*taui)
+z'=(-z+f(aez*u-tz))/(c*tauz)
+we'=ve
+ve'=we-u
+wi'=vi
+vi'=(wi-v)/sigi2
+f(u)=1/(1+exp(-u))
+par c=.6,sigi2=.1
+par aze=12,te=3.8,aee=15,aie=10,taue=2
+par taui=5,aei=25,aii=8,ti=8.5
+par tauz=50,aez=10,tz=7
+init u=.3160,v=.14605,z=.021,we=.3161,ve=0
+init wi=.14605,vi=0
+@ meth=qualrk,tol=1e-10
+@ xp=we,yp=ve,xlo=-.05,ylo=-.2,xhi=.5,yhi=.3
+dobe
